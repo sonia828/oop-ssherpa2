@@ -1,14 +1,14 @@
-class Cord {
-    __constructor__(length,connector,coapacity) {
+export class Cord {
+    constructor(length, connector, capacity) {
         this._length = null;
         this.length = length;
         this._connector = null;
-        this._length = connector;
+        this.connector = connector;
         this._capacity = null;
-        this.capacity = capacity;
+        this.capacity = capacity; // this.set capacity(capacity);
     }
 
-    get length(){
+    get length() {
         return this._length;
     }
 
@@ -16,24 +16,23 @@ class Cord {
         if (value > 0.0) {
             this._length = value;
         } else {
-            throw new RangeError("length must be positive ");
+            throw new RangeError("length must be positive");
         }
     }
-
 
     get connector() {
         return this._connector;
     }
 
-    set connector() {
-        if (value > 0.0) {
-            this._length = value;
+    set connector(value) {
+        if (value.startsWith("male ") || value.startsWith("female ")) {
+            this._connector = value;
         } else {
-            throw new RangeError("connector must be ");
+            throw new RangeError("connector must be male or female");
         }
     }
 
-    get capacity(){
+    get capacity() {
         return this._capacity;
     }
 
@@ -41,12 +40,13 @@ class Cord {
         if (value > 0.0) {
             this._capacity = value;
         } else {
-            throw new RangeError("capacity must be positive ");
+            throw new RangeError("capacity must be positive");
         }
     }
-//cord.opposite
+
+    // cord.opposite
     get opposite() {
-        if (this._connector.startswith("male")) {
+        if (this._connector.startsWith("male")) {
             return "female" + this._connector.substring(4);
         } else {
             return "male" + this._connector.substring(6);
@@ -54,13 +54,13 @@ class Cord {
     }
 
     compatible(equipment) {
-        return this.capacity >= equipment.consumption && this.opposite
-            && this.capacity >= equipment.consumption && this.opposite
-
+        return this.capacity >= equipment.consumption
+            && this.opposite == equipment.connector;
     }
 }
-class Eqiupment {
-    __contructor__(consumption,connector,enabled) {
+
+export class Equipment {
+    constructor(consumption, connector, enabled) {
         this._consumption = consumption;
         this._connector = connector;
         this._enabled = enabled;
