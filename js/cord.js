@@ -1,21 +1,53 @@
 class Cord {
     __constructor__(length,connector,coapacity) {
-        this._length = length;
+        this._length = null;
+        this.length = length;
+        this._connector = null;
         this._length = connector;
-        this._capacity = capacity;
+        this._capacity = null;
+        this.capacity = capacity;
     }
+
+    get length(){
+        return this._length;
+    }
+
+    set length(value) {
+        if (value > 0.0) {
+            this._length = value;
+        } else {
+            throw new RangeError("length must be positive ");
+        }
+    }
+
 
     get connector() {
         return this._connector;
     }
 
     set connector() {
-        this.+connector = value;
+        if (value > 0.0) {
+            this._length = value;
+        } else {
+            throw new RangeError("connector must be ");
+        }
+    }
+
+    get capacity(){
+        return this._capacity;
+    }
+
+    set capacity(value) {
+        if (value > 0.0) {
+            this._capacity = value;
+        } else {
+            throw new RangeError("capacity must be positive ");
+        }
     }
 //cord.opposite
     get opposite() {
         if (this._connector.startswith("male")) {
-            return "femail" + this._connector.substring(4);
+            return "female" + this._connector.substring(4);
         } else {
             return "male" + this._connector.substring(6);
         }
