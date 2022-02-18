@@ -1,3 +1,4 @@
+
 export class Cord {
     constructor(length, connector, capacity) {
         this._length = null;
@@ -65,4 +66,9 @@ export class Equipment {
         this._connector = connector;
         this._enabled = enabled;
     }
+}
+
+export default {
+    Cord,
+    Equipment
 }
