@@ -4,5 +4,5 @@
 completed introduction assignment!
 
 docker commands for cpp folder:
-// docker build -t cpp .
-// docker run --rm cpp test_greet or test_cord 
+docker build -t cpp .
+docker run --rm cpp test_greet or test_cord 
