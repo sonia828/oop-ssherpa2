@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 namespace power {
   class Cord {
@@ -11,5 +12,7 @@ namespace power {
       public: double length() const;
       public: void length(double value);
   };
+
+typedef std::shared_ptr < Cord > SPCord;
 
 }
