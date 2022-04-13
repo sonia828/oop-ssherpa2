@@ -11,4 +11,3 @@ namespace hello {
     void greet(std::ostream &out = std::cout) const;
   };
 }
-

@@ -11,4 +11,3 @@ COPY include /usr/src/myapp/include/
 RUN make all
 ENV PATH="/usr/src/myapp/bin:${PATH}"
 CMD [ "/bin/bash" "-i" ]
-
