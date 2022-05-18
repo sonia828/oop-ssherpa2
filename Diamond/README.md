@@ -1,4 +1,4 @@
-## Rectangle #
+## Diamond #
 
 
-#### Test Result:
+#### Test Result: Passed!
