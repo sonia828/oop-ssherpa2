@@ -1,0 +1,3 @@
+#!/bin/bash
+docker build -t rectangle . && docker run --rm rectangle test_Rectangle
+
