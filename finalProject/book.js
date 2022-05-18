@@ -1,9 +1,9 @@
+
 // Book Constructor
 function Book(title, author, isbn) {
     this.title = title;
     this.author= author;
     this.isbn = isbn;
-    
     }
     
     //UI Contructor
@@ -33,12 +33,9 @@ function Book(title, author, isbn) {
     <td><a href="" class="delete">X</a></td>
     `;
     
-    //Lets append to the list
-    
+    //append to the list
     list.appendChild(row);
     }
-    
-    //so let clear this fields right after we submit
 
     //Show Alert
     UI.prototype.showAlert = function(message, className){
@@ -58,15 +55,11 @@ function Book(title, author, isbn) {
     //Get Form
     const form = document.querySelector('#book-form');
     
-    //take the constainer which is the parent and insert before.
-    // it going to take two things the div and form
-    
     //Insert alert
-    
     container.insertBefore(div, form);
     
     // Timeout after 3 sec
-    //Here we going to use windows object
+    // Here, I use windows object
     setTimeout(function(){
     
         document.querySelector('.alert').remove();
@@ -134,10 +127,9 @@ function Book(title, author, isbn) {
     })
     
     //Event listening for delete
-    //here we going to use the parent of it i.e 
+    //here, i use the parent of it i.e 
     document.getElementById('book-list').addEventListener('click', function(e){
     // console.log(123); 
-    
     
     //Instantiate UL
     const ui = new UI();
@@ -147,6 +139,5 @@ function Book(title, author, isbn) {
     //Show message
     
     ui.showAlert('Book Removed!', 'success');
-    
     e.preventDefault();
     });

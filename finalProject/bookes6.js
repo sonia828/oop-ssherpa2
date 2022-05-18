@@ -61,12 +61,9 @@ clearFields(){
 
 }
 
-//Event Listening
-
 document.getElementById('book-form').addEventListener('submit',function(e){
     
     //Get form values
-    
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const isbn = document.getElementById('isbn').value;
@@ -81,26 +78,19 @@ document.getElementById('book-form').addEventListener('submit',function(e){
     if(title === '' || author === '' || isbn === '') {
     
         //Error alert
-    
         ui.showAlert('please fill in all fields', 'error');
     }
     else{
     
-    //Add Book to list
-    
     ui.addBookToList(book);
-    
-    //show success
     ui.showAlert('Book Added', 'success');
-    
-    // Clear Fields
     ui.clearFields();    
     }
     
     e.preventDefault();
     })
     
-    //Event listening for delete 
+    //Event listening to delete 
     document.getElementById('book-list').addEventListener('click', function(e){
 
     //Instantiate UL
