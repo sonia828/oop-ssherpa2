@@ -8,8 +8,8 @@ struct Rectangle {
    public: Rectangle() { 
        cout << "Rectangle()" << endl;  
        }  // default constructor only
-   virtual string ip() const { return m_i; }
-   virtual void ip(const string &value) { m_i = value; }
+   virtual string i() const { return m_i; }
+   virtual void i(const string &value) { m_i = value; }
    virtual ~Rectangle() { cout << "~Rectangle()" << endl; }
 };
 
@@ -35,11 +35,11 @@ bool Breadth::compatible(const Side &side) const {
 }
 
 struct Length : virtual Rectangle {
-    bool fuseOk;
-    Length() : fuseOk(true) { cout << "Length" << endl; }
+    bool sideOk;
+    Length() : sideOk(true) { cout << "Length" << endl; }
 
-    virtual void reset() { fuseOk = true; }
-    virtual void trip() { fuseOk = false; }
+    virtual void reset() { sideOk = true; }
+    virtual void trip() { sideOk = false; }
     virtual ~Length() { cout << "~Length()" << endl; }
 };
 
@@ -47,7 +47,7 @@ struct Perimeter : Breadth, Length, virtual Rectangle  {
     Perimeter(int capacity) : Breadth(capacity) { cout << "Perimeter" << endl; }
    virtual bool compatible(const Side &side) const override {
         cout << "Perimeter::compatible()" << endl;
-        if (!fuseOk) return false;
+        if (!sideOk) return false;
         return Breadth::compatible(side);
     }
     ~Perimeter() { cout << "~Perimeter" << endl; }
