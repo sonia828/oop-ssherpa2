@@ -16,10 +16,9 @@ class uInterface {
         <td>${book.title}</td>
         <td>${book.author}</td>
         <td>${book.edition}</td>
-        <td><a href="" class="delete">X</a></td>
+        <td><a href="" class="delete">Delete here</a></td>
         `;
     list.appendChild(row);
-    
 }   
 
 showAlert(message, className){
@@ -66,7 +65,7 @@ document.getElementById('book-form').addEventListener('submit',function(e){
     else{
     
     uinterface.addBookToList(book);
-    uinterface.showAlert('Book Added', 'success');
+    uinterface.showAlert('Book has been added', 'success');
     uinterface.clearFields();    
     }
     
@@ -77,6 +76,6 @@ document.getElementById('book-form').addEventListener('submit',function(e){
     document.getElementById('booklist').addEventListener('click', function(e){
     const uinterface = new uInterface();
     uinterface.deleteBook(e.target);
-    uinterface.showAlert('Book Removed!', 'success');
+    uinterface.showAlert('Book has been removed!', 'success');
     e.preventDefault();
     });

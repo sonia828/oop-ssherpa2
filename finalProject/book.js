@@ -17,7 +17,7 @@ function Book(title, author, edition) { //book contructor
     <td>${book.title}</td>
     <td>${book.author}</td>
     <td>${book.edition}</td>
-    <td><a href="" class="delete">X</a></td>
+    <td><a href="" class="delete">delete here</a></td>
     `;
     
     list.appendChild(row); //appened to the list
