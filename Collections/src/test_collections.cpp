@@ -1,21 +1,21 @@
 #include <gtest/gtest.h>
 
 struct Breadth {
-    std::string plug;
+    std::string edge;
     int length;
-    Breadth(const std::string &_plug, int _length) 
-    : plug(_plug), length(_length) {};
-    virtual bool connects(const std::string &otherPlug) const {
-       return plug == otherPlug;
+    Breadth(const std::string &_edge, int _length) 
+    : edge(_edge), length(_length) {};
+    virtual bool connects(const std::string &otherEdge) const {
+       return edge == otherEdge;
     }
 };
 
 struct Perimeter : Breadth {
    bool sideOk;
-    Perimeter(const std::string &_plug, int _length) : Breadth(_plug,_length), sideOk(true) {}
+    Perimeter(const std::string &_edge, int _length) : Breadth(_edge,_length), sideOk(true) {}
 
-    virtual bool connects(const std::string &otherPlug) const override {
-       return sideOk && plug == otherPlug;
+    virtual bool connects(const std::string &otherEdge) const override {
+       return sideOk && edge == otherEdge;
     }
 };
 
@@ -65,20 +65,16 @@ TEST(vector,heirarchy) {
 
   for (auto &breadth1 : breadths) {
       for (auto &breadth2 : breadths) {
-         std::cout << breadth1->connects(breadth2->plug);
+         std::cout << breadth1->connects(breadth2->edge);
       }
       std::cout << std::endl;
   }
-
-  std::cout << "break fuse" << std::endl;
-
-  
 
   dynamic_cast<Perimeter&>(*breadths[1]).sideOk = false;
 
   for (auto &breadth1 : breadth2) {
       for (auto &breadth2 : breadths) {
-         std::cout << breadth1->connects(breadth2->plug);
+         std::cout << breadth1->connects(breadth2->edge);
       }
       std::cout << std::endl;
   }
@@ -116,22 +112,22 @@ TEST(map,simple) {
 
   std::set<std::string> names;
 
-  names.insert("alice");
-  names.insert("zeta");
+  names.insert("sonia");
+  names.insert("sam");
 
-  if (names.find("alice") != names.end()) {
-    std::cout << "found alice!";
+  if (names.find("sonia") != names.end()) {
+    std::cout << "found sonia!";
   }
 }
 
 
 std::strong_ordering operator<=>(const Breadth &a, const Breadth &b) {
-  if (a.plug != b.plug) return a.plug <=> b.plug;
+  if (a.edge != b.edge) return a.edge <=> b.edge;
   return a.length <=> b.length;
 }
 
 std::ostream& operator<<(std::ostream &out, const Breadth &breadth) {
-  return (((((out << "a ") << breadth.length) << " meter ") << breadth.plug) << "breadth");
+  return (((((out << "a ") << breadth.length) << " meter ") << breadth.edge) << "breadth");
 }
  
 TEST(set,custom) {
@@ -151,9 +147,9 @@ TEST(set,custom) {
 
 TEST(map,custom) {
   std::map<Breadth, std::set < std::string > > locations;
-  locations[Breadth("3-prong",12)].insert("living room");
-  locations[Breadth("3-prong",12)].insert("kichen");
-  locations[Breadth("2-prong",10)].insert("garage");
+  locations[Breadth("3-prong",12)].insert("Bedroom");
+  locations[Breadth("3-prong",12)].insert("dining");
+  locations[Breadth("2-prong",10)].insert("bathroom");
 
   for (auto &breadthLocs : locations) {
     std::cout << breadthLocs.first << " may be in:";
