@@ -39,13 +39,6 @@ completed introduction assignment!
 | **Status** | Done |
 | **Location**            | https://github.com/sonia828/oop-ssherpa2/tree/main/Rectangle |
 
-## JS Object
-| Name | Value |
-|:---|:---|
-| **Name** | JS Object |
-| **Discription** | a simple object in javascript, with some properties getters and setters, |
-| **Status** | Done |
-| **Location**            | https://github.com/sonia828/oop-ssherpa2/tree/main/Circle |
 
 ## JS hierarchy with mixin
 | Name | Value |
