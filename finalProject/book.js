@@ -1,64 +1,35 @@
 
-// Book Constructor
-function Book(title, author, isbn) {
+function Book(title, author, edition) { //book contructor
     this.title = title;
     this.author= author;
-    this.isbn = isbn;
+    this.edition = edition;
     }
     
-    //UI Contructor
-    function UI(){}
-    
-    //Add Book to List
-    UI.prototype.addBookToList = function(book){
-        //let see if it is calling this prototype
-    // console.log(book);
-    
-    //Let create the list
-    
-    const list = document.getElementById('book-list');
-    //now let create an HTML ELEMENT USING JAVASCRIPT
-    
-    // Create element tr
+    function uInterface(){}
+
+    uInterface.prototype.addBookToList = function(book){ //add book to the list
+    const list = document.getElementById('booklist'); //list created
     const row = document.createElement('tr');
-    //test it
-    // console.log(row);
     
     //Insert Col by using template literals
     row.innerHTML = `
      
     <td>${book.title}</td>
     <td>${book.author}</td>
-    <td>${book.isbn}</td>
+    <td>${book.edition}</td>
     <td><a href="" class="delete">X</a></td>
     `;
     
-    //append to the list
-    list.appendChild(row);
+    list.appendChild(row); //appened to the list
     }
-
-    //Show Alert
-    UI.prototype.showAlert = function(message, className){
+    uInterface.prototype.showAlert = function(message, className){
     
-    // Creare div
     const div = document.createElement('div');
-    //Add className
-    div.className = `alert ${className}`;
-    
-    //Add Text which we need to add a text node
+    div.className = `alert ${className}`; // classname added
     div.appendChild(document.createTextNode(message));
-    
-    //let insert into the document by Get the parent
     const container = document.querySelector('.container');
-    
-    //let put it right before the form
-    //Get Form
     const form = document.querySelector('#book-form');
-    
-    //Insert alert
-    container.insertBefore(div, form);
-    
-    // Timeout after 3 sec
+    container.insertBefore(div, form); //alert inserted
     // Here, I use windows object
     setTimeout(function(){
     
@@ -67,77 +38,47 @@ function Book(title, author, isbn) {
     
     }
     
-    //Delete book
-    UI.prototype.deleteBook = function(target){
+    uInterface.prototype.deleteBook = function(target){ //to delete the book
         if(target.className === 'delete'){
             target.parentElement.parentElement.remove();
         }
     } 
     
-    //Clear Fields
-    UI.prototype.clearFields = function(){
+    uInterface.prototype.clearFields = function(){ //clear the fields
         document.getElementById('title').value = '';
         document.getElementById('author').value = '';
-        document.getElementById('isbn').value = '';
+        document.getElementById('edition').value = '';
     }
     
     //Event Listening
     document.getElementById('book-form').addEventListener('submit',function(e){
-    // console.log('Test');
-    
-    //Get form values
     
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
-    const isbn = document.getElementById('isbn').value;
-    
-    // console.log(title, author, isbn);
-    
-    //Instantiate book
-    const book = new Book(title, author, isbn);
-    // console.log(book);
-    // Now we have a book object
+    const edition = document.getElementById('edition').value;
+    const book = new Book(title, author, edition);
+    // book object created
     
     //Instantiate UL
-    const ui = new UI();
+    const uinterface = new uInterface();
     
-    
-    //Validate
-    if(title === '' || author === '' || isbn === '') {
-    
-        //Error alert
-    
-        ui.showAlert('please fill in all fields', 'error');
+    if(title === '' || author === '' || edition === '') {
+
+        uinterface.showAlert('please do not keep the fields empty', 'error');
     }
     else{
     
-    //Add Book to list
-    ui.addBookToList(book);
-    //so let create the prototype
-    
-    //show success
-    ui.showAlert('Book Added', 'success');
-    
-    // Clear Fields
-    ui.clearFields();
-    
+    uinterface.addBookToList(book);
+    uinterface.showAlert('Book Added', 'success');
+    uinterface.clearFields();
     }
 
     e.preventDefault();
     })
+    document.getElementById('booklist').addEventListener('click', function(e){
     
-    //Event listening for delete
-    //here, i use the parent of it i.e 
-    document.getElementById('book-list').addEventListener('click', function(e){
-    // console.log(123); 
-    
-    //Instantiate UL
-    const ui = new UI();
-    // Delete Book
-    ui.deleteBook(e.target);
-    
-    //Show message
-    
-    ui.showAlert('Book Removed!', 'success');
+    const uinterface = new uInterface();     //Instantiate UL
+    uinterface.deleteBook(e.target);
+    uinterface.showAlert('Book has been removed!', 'success');
     e.preventDefault();
     });
